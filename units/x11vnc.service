@@ -1,0 +1,9 @@
+[Unit]
+Description=x11vnc on Xvfb :99
+After=xvfb.service
+Requires=xvfb.service
+[Service]
+ExecStart=/usr/bin/x11vnc -display :99 -forever -shared -rfbauth /etc/x11vnc.passwd -noxdamage
+Restart=always
+[Install]
+WantedBy=multi-user.target

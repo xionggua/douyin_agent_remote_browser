@@ -1,0 +1,10 @@
+[Unit]
+Description=Douyin bot Chrome (CDP on 127.0.0.1:9222)
+After=xvfb.service
+Requires=xvfb.service
+[Service]
+Environment=DISPLAY=:99
+ExecStart=/bin/sh -c "rm -f /opt/douyin-profile/Singleton*; exec /usr/bin/chromium --no-sandbox --user-data-dir=/opt/douyin-profile --remote-debugging-port=9222 --remote-debugging-address=127.0.0.1 --window-position=0,0 --window-size=1280,720 --no-first-run --no-default-browser-check --disable-gpu --disable-dev-shm-usage --mute-audio --disable-backgrounding-occluded-windows --disable-renderer-backgrounding --disable-background-timer-throttling --autoplay-policy=no-user-gesture-required https://www.douyin.com/"
+Restart=always
+[Install]
+WantedBy=multi-user.target

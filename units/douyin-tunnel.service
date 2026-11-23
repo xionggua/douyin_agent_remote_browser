@@ -1,0 +1,10 @@
+[Unit]
+Description=Reverse SSH tunnel to cloud server
+After=network-online.target
+Wants=network-online.target
+[Service]
+ExecStart=/usr/bin/autossh -M 0 -N -i /root/.ssh/douyin_home -p __SSH_PORT__ -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=accept-new -R 127.0.0.1:9222:127.0.0.1:9222 -R 127.0.0.1:2222:127.0.0.1:22 tunnel@__CLOUD_HOST__
+Restart=always
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
