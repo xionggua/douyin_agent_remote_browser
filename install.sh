@@ -40,7 +40,7 @@ echo "==> 1/6 安装系统依赖（xvfb x11vnc novnc websockify autossh 中文�
 if [ "$PKG" = apt ]; then
   export DEBIAN_FRONTEND=noninteractive
   apt-get update -y || echo "!! apt update 失败：软件源有问题（换可用镜像后重跑本脚本），先尝试继续……"
-  apt-get install -y xvfb x11vnc novnc websockify autossh openssh-client curl ca-certificates
+  apt-get install -y xdotool xvfb x11vnc novnc websockify autossh openssh-client curl ca-certificates
   # 抖音页面全是中文+emoji，无 CJK 字体会满屏豆腐块
   apt-get install -y fonts-noto-cjk fonts-noto-color-emoji || echo "!! 中文字体安装失败：页面文字将显示为方框，请手动安装 fonts-noto-cjk"
   fc-cache -f >/dev/null 2>&1 || true
@@ -74,7 +74,7 @@ if [ "$PKG" = apt ]; then
     CHROME_BIN="$(command -v chromium || command -v chromium-browser || true)"
   fi
 else
-  dnf install -y xorg-x11-server-Xvfb x11vnc autossh openssh-clients curl || true
+  dnf install -y xdotool xorg-x11-server-Xvfb x11vnc autossh openssh-clients curl || true
   dnf install -y chromium novnc websockify || echo "!! dnf 缺包，请手动安装后重跑本脚本"
   # 抖音页面全是中文+emoji，无 CJK 字体会满屏豆腐块（包名因发行版而异，失败不阻断）
   dnf install -y google-noto-sans-cjk-ttc-fonts google-noto-emoji-color-fonts 2>/dev/null \
